@@ -1,3 +1,5 @@
+import { IngresoServicio } from './ingreso.servicio';
+import { Ingreso } from './ingreso.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IngresoComponent implements OnInit {
 
-  constructor() { }
+  ingresos:Ingreso[]=[];
+  constructor(private ingresoServicio:IngresoServicio) { }
 
   ngOnInit() {
+    this.ingresos = this.ingresoServicio.ingresos;
+  }
+
+  eliminarRegistro(ingreso:Ingreso){
+    this.ingresoServicio.eliminar(ingreso);
   }
 
 }
